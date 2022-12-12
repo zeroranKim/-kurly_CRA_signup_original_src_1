@@ -1,0 +1,559 @@
+@charset "UTF-8";
+//공용스타일을 루트에 css 폴더와 연결
+// #{$변수}  보간법
+@import './_config.scss';  //변수 경로 설정 사스 스타일 가져오기
+
+@import url('#{$path}fonts.css');
+@import url('#{$path}reset.css');
+@import url('#{$path}modal.css');
+@import url('#{$path}header.css');
+@import url('#{$path}footer.css');
+
+#wrap {
+   width:100%;
+   position: relative; 
+   #main {
+      width:100%;
+      #signIn {
+         width:100%;
+         padding:50px 0 90px 0;
+         .container {
+            width:640px;
+            margin:0 auto;
+            .title {
+               width:100%;
+               text-align: center;
+               padding:0 0 50px 0;
+               h2 {
+                  font-size: 28px;
+                  color:#333;
+                  font-weight: 600;
+               }
+            }
+            .content {
+               width:100%;
+               form {
+                  > ul {
+                     width:100%;
+                     border-bottom:1px solid #eee;
+                     > li {
+                        padding:10px 20px;
+                        display: flex;
+
+                        // hp-ok-box 인증번호 확인 박스
+                        &.hp-ok-box{
+                           display: none;
+                           &.on{
+                              display: flex;
+                           }
+                        }
+                        
+                        &:last-child {
+                           .left {
+                              height: auto;
+                              padding:15px 0;
+                              align-items: flex-start;
+                           }
+                        }
+                        &.hr {
+                        padding:20px 0 0 0; 
+                        }
+                        &:first-child {
+                           padding:0 0 13px 0;
+                           display: block;  
+                           text-align: right; 
+                           border-bottom:2px solid #000;                                            
+                           span {
+                              font-size: 12px;                           
+                              i {
+                                 color:rgb(238, 106, 123);
+                                 vertical-align: baseline;
+                              }
+                           }
+                        }                     
+                        .left {
+                           width: 139px;
+                           height: 46px;                        
+                           display: flex;
+                           align-items: center;
+                           label {
+                              font-size: 14px;
+                              color:rgb(51, 51, 51);
+                              font-weight: 500;
+                              i {
+                                 color:rgb(238, 106, 123);
+                                 vertical-align: baseline;
+                              }
+                           }
+                        }
+                        .right {
+                           width: 461px;
+                           padding:0 128px 0 0;
+                           position: relative;
+                           &.birth-day {
+                             ul{
+                              width:100%;
+                              height:44px;
+                              display: flex;
+                              border:1px solid #ccc;
+                              border-radius: 3px;
+                              overflow: hidden;
+                              li {
+                                 &:nth-child(odd) {width:30%;}
+                                 &:nth-child(even){width:5%;}
+                                 
+                                 display: flex;
+                                 justify-content: center;
+                                 align-items: center;
+                                 input {
+                                    width:100%;
+                                    text-align: center;
+                                    border:0;
+                                    outline: 0;   
+                                    height: 44px;                                 
+                                    &::placeholder {
+                                       color:#777;
+                                       font-size: 14px;
+                                       font-family: 'Noto Sans';
+                                    }
+                                 }
+                                 i {
+                                    color:#ddd;
+                                    font-size: 20px;
+                                 }
+                              }
+                             } 
+                             p {
+                              display: none;
+                              font-size: 12px;
+                              color: rgb(240, 63, 64);
+                              padding:10px 0 0 0;
+                              &.on{
+                                 display: block;
+                              }
+                             }
+                           }
+                           input {
+                              width:100%;
+                              height: 44px;
+                              border: 1px solid #ddd;
+                              padding: 0 15px;
+                              background: #fff;
+                              color:#444;
+                              font-size: 14px;
+                              border-radius:3px;
+                              outline-offset:-1px;
+                              outline:1px solid transparent;
+                              transition: all 0.3s;
+                              
+                              &:focus {
+                                 outline:1px solid #555;
+                              }
+                              &::placeholder {
+                                 color:#aaa;
+                              }
+
+                              //인증번호 확인
+                              &#hpOk {
+                                 position: relative;
+                                 z-index: 1;
+                              }
+
+
+                              // 주소
+                              &#addr1 { //나머지 주소 입력상자
+                                 display: none;
+                                 &.on{
+                                    display: block;
+                                 }
+                              }
+                              &#addr2 { //나머지 주소 입력상자
+                                 display: none;
+                                 margin-top:10px;
+                                 &.on{
+                                    display: block;
+                                 }
+                              }
+                              //성별 라디오 속성 라디오 UIUX 디자인 가능한 상태 기본성격 사용안함 => appearance: none; 
+                              &[type="radio"]{
+                                 width:24px;
+                                 height:24px;
+                                 border:1px solid #ccc;  
+                                 appearance: none;  //라디오 UIUX 디자인 가능한 상태  
+                                 border-radius: 12px;
+                                 padding:0;  //입력상자의 패딩값이 있어서 옆으로 길죽하게된상태 해결
+                                 margin:0 10px 0 0;
+                                 transition: none;
+                                 &:checked { //라디오버튼 선택하면(체크드하면)
+                                    border:7px solid rgb(95, 0, 128); 
+                                 }
+                              } 
+
+                           }
+                           button {
+                              cursor: pointer;
+                              position: absolute;
+                              top:0;
+                              right:0;                         
+                              width:120px;
+                              height: 46px;
+                              border: 1px solid rgb(95, 0, 128);
+                              background: #fff;
+                              color:rgb(95, 0, 128);
+                              padding: 0 15px;                        
+                              font-size: 14px;
+                              border-radius:3px;
+                              outline: 0;
+                              font-weight: 500;
+                              cursor: pointer;
+                              &.hp-btn {
+                                 color:#ccc;
+                                 border: 1px solid #ccc;
+                                 cursor: default;
+                                 &.on{
+                                    color:rgb(95, 0, 128);
+                                    border: 1px solid rgb(95, 0, 128);
+                                    cursor: pointer;
+                                 }
+                                 &.Hide {
+                                    display: none;
+                                 }
+                              }
+                              
+                              &.hp2-btn {
+                                 display: none;
+                                 color:rgb(95, 0, 128);
+                                 border: 1px solid rgb(95, 0, 128);
+                                 cursor: pointer;
+                                 &.show {
+                                    display: block;
+                                 }
+                              }
+
+                              &.hp-ok-btn {
+                                 color:#ccc;
+                                 border: 1px solid #ccc;
+                                 cursor: default;
+                                 &.on{
+                                    color:rgb(95, 0, 128);
+                                    border: 1px solid rgb(95, 0, 128);
+                                    cursor: pointer;
+                                 }
+                              }
+                              // 주소 검색 버튼                              
+                              &.addr-search-btn {
+                                 display: block;
+                                 position: relative;
+                                 top:0;
+                                 left:0;
+                                 width:100%;
+                                 &.on{
+                                    display: none;
+                                 }
+                                 img {
+                                    width:23px;
+                                    margin-top:-3px;
+                                 }
+                              }
+                              // 주소 재검색 버튼 
+                              &.addr-research-btn {
+                                 display: none;
+                                 &.on{
+                                    display: block;
+                                 }
+                                 img {
+                                    width:23px;
+                                    margin-top:-3px;
+                                 }
+                              }
+
+                           }
+
+                           .hp-ok-time {
+                              z-index: 2;
+                              position: absolute;
+                              top:16px;
+                              right:145px;
+                              color:rgb(240, 63, 64);
+                              font-size:14px;
+                              em {
+                                margin:0 4px;
+                              }
+                           }
+
+                           &.addr{
+                              p {
+                                 user-select: none;
+                                 font-size: 12px;
+                                 color:rgb(102, 102, 102);
+                                 padding:10px 0 0 0;
+                              }
+                           }
+                           &.gender {
+                              display: flex;
+                              justify-content: space-between;
+                              align-items: center;
+                              font-size:14px;
+                           }
+                           &.add-input {
+                              display: block;
+                              .add-input-box {
+                                 height: 46px;
+                                 display: flex;
+                                 justify-content: space-between;
+                                 align-items: center;
+                              }
+                              #choocheon{
+                                 margin:10px 0 0 0;
+                              }
+                              p {
+                                 user-select: none;
+                                 margin:10px 0 0 0;
+                                 font-size: 12px;
+                                 color:rgb(102, 102, 102);
+                                 line-height: 140%;
+                              }
+                           }
+
+                           //이용약관동의
+                           &.service {
+                              padding:0;
+                              margin:0;
+                              ul {
+                                 width:100%;
+                                 li {
+                                    user-select: none;
+                                    width:100%;
+                                    padding:10px 0; 
+                                    position: relative;
+                                    .more-view{
+                                       user-select: none;
+                                       position: absolute;
+                                       right:0;
+                                       top:10px;
+                                       color:rgb(95, 0, 128);
+                                       font-size: 14px;
+                                       img {
+                                          width:16px;
+                                          margin:-2px 0 0 0;                                       
+                                       }
+                                    }                                
+                                    &:nth-child(1){
+                                       font-size: 18px;
+                                       font-weight: 500;
+                                       p {
+                                          user-select: none;
+                                          font-size: 12px;
+                                          color:rgb(102, 102, 102);
+                                          padding:5px 0 0 34px;
+                                       }
+                                    }
+                                    &:nth-child(6){
+                                       padding-left:34px;
+                                       label {
+                                          margin:0 60px 0 0;
+                                       }
+                                    }
+                                    &:nth-child(7){
+                                       padding-left:68px;
+                                       p {
+                                          user-select: none;
+                                          font-size: 12px;
+                                          color:rgb(95, 0, 128);
+                                          padding:0 0 0 15px;
+                                          background: url(../img/ico_sub_dot.svg) no-repeat 0 50%;
+                                       } 
+                                    }
+                                    em {
+                                       font-size: 14px;
+                                       color:#bbb;
+                                       margin:0 0 0 3px;
+                                       user-select: none;
+                                    }
+                                    label {
+                                       position: relative;
+                                       user-select: none;
+                                       input[type="checkbox"] {
+                                          width:24px;
+                                          height:24px;
+                                          background: url(../img/check_off.svg) no-repeat 50% 50%;  
+                                          appearance: none;  //라디오 UIUX 디자인 가능한 상태  
+                                          border-radius: 12px;
+                                          padding:0;  //입력상자의 패딩값이 있어서 옆으로 길죽하게된상태 해결
+                                          margin:0 10px 0 0;
+                                          transition: none;
+                                          &:checked { //라디오버튼 선택하면(체크드하면)
+                                             background-image: url(../img/check_on.svg);   
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+
+
+                           ///////////////////////////////
+                           &.id {
+                              .guid-text {
+                                 font-size: 13px;
+                                 display: none;
+                                 padding-top:10px;
+                                 &.on{
+                                    display: block;
+                                    color:rgb(240, 63, 64);
+                                 }
+                              }
+                           }
+
+                           &.pw {
+                              .guid-text {
+                                 font-size: 13px;
+                                 display: none;
+                                 padding-top:10px;
+                                 &.on{
+                                    display: block;
+                                    color:rgb(240, 63, 64);
+                                 }
+                              }
+                           }
+
+                           &.pw2 {
+                              .guid-text {
+                                 font-size: 13px;
+                                 display: none;
+                                 padding-top:10px;
+                                 &.on{
+                                    display: block;
+                                    color:rgb(240, 63, 64);
+                                 }
+                              }
+                           }
+                           &.name {
+                              .guid-text {
+                                 font-size: 13px;
+                                 display: none;
+                                 padding-top:10px;
+                                 &.on{
+                                    display: block;
+                                    color:rgb(240, 63, 64);
+                                 }
+                              }
+                           }                           
+                           &.email {
+                              .guid-text {
+                                 font-size: 13px;
+                                 display: none;
+                                 padding-top:10px;
+                                 &.on{
+                                    display: block;
+                                    color:rgb(240, 63, 64);
+                                 }
+                              }
+                           }                           
+                           &.hp {
+                              .guid-text {
+                                 font-size: 13px;
+                                 display: none;
+                                 padding-top:10px;
+                                 &.on{
+                                    display: block;
+                                    color:rgb(240, 63, 64);
+                                 }
+                              }
+                           }   
+                           &.hp-ok {
+                              position: relative;
+                              .guid-text {
+                                 font-size: 12px;
+                                 padding-top:20px;
+                                 display: block;
+                                 color:rgb(102, 102, 102);
+                                 line-height: 140%;
+                              }
+                           }                            
+                        }
+                        hr {
+                           border:0;
+                           width:100%;
+                           height:1px;
+                           background: #000;
+                           margin:10px 0 0 0;
+                        }
+
+
+
+                     }
+                  }
+                  .submit {
+                     padding: 40px 0;
+                     text-align: center;
+                     button {
+                        cursor: pointer;
+                        width:240px;
+                        height: 56px;
+                        background: rgb(95, 0, 128);
+                        color:#fff;
+                        font-size: 14px;
+                        font-weight: 600;
+                        border:0;
+                        cursor: pointer;
+                        border-radius: 3px;
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   .member-modal {
+      z-index: 5;
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0, 0.5);      
+      .wrap {
+         width:100%;
+         height:100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         .container {
+            width:360px;
+            height: 170px;
+            border-radius:5px;
+            overflow: hidden;
+            .content {
+               width:100%;
+               height:120px;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               background:#fff;
+               p {
+                  width:100%;
+                  font-size:14px;
+                  font-weight:500;
+                  user-select: none;
+                  line-height: 140%;
+                  text-align: center;padding:0 20px;
+               }
+            }
+            .button-box {
+               width:100%;
+               height:55px;
+               border-top:1px solid #eee;
+               button {
+                  width:100%;
+                  height:55px;
+                  background:#fff;
+                  border:0;
+                  cursor: pointer;
+               }
+            }
+         }
+      }
+   }
+}
